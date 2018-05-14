@@ -44,7 +44,6 @@ public class FrMain extends JFrame implements MouseListener,ActionListener{
 
     private JMenu avMenuFile;
     
-    private ToolBar standart;
     private JTabbedPane tabHome;
     private TabbedPane tabUser;
     
@@ -66,9 +65,7 @@ public class FrMain extends JFrame implements MouseListener,ActionListener{
     public FrMain() {
         initComponents();
         adjustInforApp();
-        initToolbar();
         initCenter();
-        initBottom();
     }
     
     private void adjustInforApp() {
@@ -111,26 +108,10 @@ public class FrMain extends JFrame implements MouseListener,ActionListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Top = new javax.swing.JPanel();
         Center = new javax.swing.JPanel();
         Bottom = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        Top.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout TopLayout = new javax.swing.GroupLayout(Top);
-        Top.setLayout(TopLayout);
-        TopLayout.setHorizontalGroup(
-            TopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        TopLayout.setVerticalGroup(
-            TopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 64, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(Top, java.awt.BorderLayout.PAGE_START);
 
         Center.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -142,7 +123,7 @@ public class FrMain extends JFrame implements MouseListener,ActionListener{
         );
         CenterLayout.setVerticalGroup(
             CenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
+            .addGap(0, 524, Short.MAX_VALUE)
         );
 
         getContentPane().add(Center, java.awt.BorderLayout.CENTER);
@@ -193,37 +174,8 @@ public class FrMain extends JFrame implements MouseListener,ActionListener{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Bottom;
     private javax.swing.JPanel Center;
-    private javax.swing.JPanel Top;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        JMenu jmX = (JMenu)e.getSource();
-        if(jmX.equals(avMenuFile)){
-            jmX.setSelected(true);
-        }
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-        JMenu jmX = (JMenu)e.getSource();
-        if(jmX.equals(avMenuFile)){
-            jmX.setSelected(false);
-        }
-    }
-    
     private void setupItemMenuBar(MenuBar menuBar, JMenu menu, String title) {
         menu.setText(title);
         menu.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -252,13 +204,11 @@ public class FrMain extends JFrame implements MouseListener,ActionListener{
     private JMenuItem jMenuItem12;
 
     private void setupJMenuItem(JMenu itemMenuBar, JMenuItem menuItem, String title, int control) {
-        //jManager => Check in/Book ing/ Check out
         menuItem = new JMenuItem();
         menuItem.setFont(new Font("Tahoma", Font.PLAIN, 11));
         menuItem.setText(title);
         menuItem.setFont(new Font("Tahoma", Font.PLAIN, 13));
         menuItem.setAccelerator(getShortKeyWindowKeyBoard(control));
-        // menuItem.setIcon(new ImageIcon(getClass().getResource("/images/password.png"))); 
         itemMenuBar.add(menuItem);
     }
     
@@ -268,65 +218,6 @@ public class FrMain extends JFrame implements MouseListener,ActionListener{
                 return KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK);                
         }
         return null;
-    }
-    
-    private void initToolbar() {
-        Top.setLayout(new BorderLayout());
-        standart = new ToolBar();
-        standart.setRollover(true);
-        standart.setFloatable(true);
-        initCompnentToolBar(standart);
-        Top.add(standart);
-    }
-
-    private void initCompnentToolBar(JToolBar standart) {
-        newDocument = new JButton();
-        setupMenuItemToolbar(standart, newDocument, "/images/icon_new_document.png");
-        
-        openFolder = new JButton();
-        setupMenuItemToolbar(standart, openFolder, "/images/icon_open_folder.png");
-        
-        saveDoc = new JButton();
-        setupMenuItemToolbar(standart, saveDoc, "/images/icon_saveDoc.png");
-        
-        saveAsDoc = new JButton();
-        setupMenuItemToolbar(standart, saveAsDoc, "/images/icon_saveAsDoc.png");
-        
-        play = new JButton();
-        setupMenuItemToolbar(standart, play, "/images/icon_play.png");
-        
-        excel = new JButton();
-        setupMenuItemToolbar(standart, excel, "/images/icon_excel.png");
-        
-        setupEventToolbar();
-    }
-    
-    private void setupMenuItemToolbar(JToolBar toolbar, JButton itemToolbar, String locationIcon) {
-        itemToolbar.setForeground(Color.decode("#00FFFFFF"));
-        itemToolbar.setFocusable(false);
-        itemToolbar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        itemToolbar.setIcon(new javax.swing.ImageIcon(getClass().getResource(locationIcon)));
-        itemToolbar.setContentAreaFilled(false);
-        itemToolbar.setForeground(Color.red);
-        itemToolbar.setEnabled(true);
-        toolbar.add(itemToolbar);
-    }
-    
-    private void setupEventToolbar() {
-        newDocument.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                newDocument.setForeground(Color.red);
-                newDocument.setEnabled(false);
-                tabHome = new JTabbedPane();
-                tabHome.setFont(new Font("Tahoma", Font.BOLD, 12));
-                tabHome.setBorder(BorderFactory.createEmptyBorder());
-                Center.removeAll();
-                Center.setLayout(new BorderLayout());
-                Center.add(tabHome,BorderLayout.CENTER);
-                initTabJpanelBar(tabUser,1);
-            }
-        });
     }
 
     private void initCenter() {
@@ -347,25 +238,32 @@ public class FrMain extends JFrame implements MouseListener,ActionListener{
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void initBottom() {
-        
-        bottom = new Panel();
-        bottom.setLayout(new FlowLayout(FlowLayout.LEFT));
-        
-        txtWelcome = new JLabel();
-        txtWelcome.setFont(new Font("Tahoma", Font.BOLD, 12)); 
-        txtWelcome.setText("Software engineer: Lorence");
-        bottom.add(txtWelcome);
-        
-        txtAdmin = new JLabel();
-        txtAdmin.setFont(new Font("Tahoma", Font.BOLD, 12)); 
-        txtAdmin.setText("- Android Studio");
-        bottom.add(txtAdmin);
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-        Bottom.add(bottom, BorderLayout.CENTER);
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

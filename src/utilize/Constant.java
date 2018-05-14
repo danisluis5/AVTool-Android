@@ -11,7 +11,7 @@ package utilize;
  */
 public class Constant {
     
-    public static String TITLE = "AVTool-AndroidStudio";
+    public static String TITLE = "Liki Optimizer";
     
     public static class MenuBar {
         public static String FILE = "File";
