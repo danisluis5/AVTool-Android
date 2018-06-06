@@ -1,5 +1,6 @@
 package come.lorence.panel.setting;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.GroupLayout;
@@ -26,23 +27,16 @@ public class PanelSetting extends JPanel implements IntefacePanel {
 
 	public void attachWidget() {
 		this.establishPanel();
+		PanelTopSetting.getInstance().attachWidget();
+		PanelSetting.getInstance().add(PanelTopSetting.getInstance(), BorderLayout.PAGE_START);
 		
-		
-		
-		GroupLayout groupLayout = new GroupLayout(PanelSetting.getInstance());
-		PanelSetting.getInstance().setLayout(groupLayout);
-		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1039, Short.MAX_VALUE)
-        );
-		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 661, Short.MAX_VALUE)
-        );
+		PanelContentSetting.getInstance().attachWidget();
+		PanelSetting.getInstance().add(PanelContentSetting.getInstance(), BorderLayout.CENTER);
 	}
 
 	public void establishPanel() {
 		this.setBackground(new Color(0, 0, 0));
+		this.setLayout(new BorderLayout());
 	}
 
 }
